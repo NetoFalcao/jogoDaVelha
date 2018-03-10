@@ -96,4 +96,15 @@ public class JogoTest {
 		jogo.desenhaMarca(1, 1); // o
 		assertFalse(jogo.isMarcaXNaPosicao(1, 1));
 	}
+	
+	@Test
+	public void jogoGanhoAtravesDeColuna() {
+		jogo.setMarcaPrimeiroJogadorX(false);
+		jogo.desenhaMarca(0, 0); 
+		jogo.desenhaMarca(1, 2);
+		jogo.desenhaMarca(1, 0);
+		jogo.desenhaMarca(2, 2);
+		jogo.desenhaMarca(2, 0);
+		assertTrue("esperava que o jogo tivess acabado", jogo.acabou());
+	}
 }
