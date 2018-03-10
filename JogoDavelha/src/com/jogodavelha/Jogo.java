@@ -7,6 +7,41 @@ public class Jogo {
 	private boolean iniciou;
 
 	public boolean acabou() {
+		return ganhouColuna() || ganhouLinha() || ganhouDiagonal();
+	}
+
+	private boolean ganhouLinha() {
+		for (int i = 0; i < 3; i++){
+			if (tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][1] == tabuleiro[i][2]
+					&& tabuleiro[i][1] != null){
+				return true;
+				}
+		}
+		
+		return false;
+	}
+
+	private boolean ganhouColuna() {
+		for (int i = 0; i < 3; i++){
+			if (tabuleiro[0][i] == tabuleiro[1][i] && tabuleiro[1][i] == tabuleiro[2][i]
+					&& tabuleiro[1][i] != null){
+				return true;
+				}
+		}
+		
+		return false;
+	}
+	
+	private boolean ganhouDiagonal() {
+		if (tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][2]
+				&& tabuleiro[1][1] != null){
+			return true;
+		}
+		if (tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][0]
+				&& tabuleiro[1][1] != null){
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -31,6 +66,10 @@ public class Jogo {
 			lancarExcecao();
 		} 
 		if (proximaJogadaX == null){
+			lancarExcecao();
+		}
+		
+		if(acabou()){
 			lancarExcecao();
 		}
 	

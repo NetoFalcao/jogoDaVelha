@@ -107,4 +107,38 @@ public class JogoTest {
 		jogo.desenhaMarca(2, 0);
 		assertTrue("esperava que o jogo tivess acabado", jogo.acabou());
 	}
+	
+	@Test
+	public void jogoGanhoAtravesDeLinha() {
+		jogo.setMarcaPrimeiroJogadorX(false);
+		jogo.desenhaMarca(1, 0); 
+		jogo.desenhaMarca(0, 2);
+		jogo.desenhaMarca(1, 2);
+		jogo.desenhaMarca(2, 0);
+		jogo.desenhaMarca(1, 1);
+		assertTrue("esperava que o jogo tivess acabado", jogo.acabou());
+	}
+	
+
+	@Test
+	public void jogoGanhoAtravesDeDiagonal() {
+		jogo.setMarcaPrimeiroJogadorX(false);
+		jogo.desenhaMarca(0, 2); 
+		jogo.desenhaMarca(0, 0);
+		jogo.desenhaMarca(1, 1);
+		jogo.desenhaMarca(2, 2);
+		jogo.desenhaMarca(2, 0);
+		assertTrue("esperava que o jogo tivess acabado", jogo.acabou());
+	}
+	
+	@Test (expected=ExcecaoJogoDaVelha.class)
+	public void desenharMarcaAposJogoGanho() {
+		jogo.setMarcaPrimeiroJogadorX(false);
+		jogo.desenhaMarca(0, 2); 
+		jogo.desenhaMarca(0, 0);
+		jogo.desenhaMarca(1, 1);
+		jogo.desenhaMarca(2, 2);
+		jogo.desenhaMarca(2, 0);
+		jogo.desenhaMarca(2, 1);
+	}
 }
